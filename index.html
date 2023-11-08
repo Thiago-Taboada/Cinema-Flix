@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Movie App</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+        integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
+        crossorigin="anonymous" />
+    <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="grid.css" />
+    <!-- <link rel="stylesheet" href="app.css" /> -->
+</head>
+
+<body>
+    <div class="nav-wrapper">
+        <div class="container">
+            <div class="nav">
+                <a href="#" class="logo">
+                    <i class="bx bx-movie-play bx-tada main-color"></i>Super
+                    Fl<span class="main-color">i</span>x
+                </a>
+                <ul class="nav-menu" id="nav-menu">
+                    <li><a id="nav-home" href="index.html">Inicio</a></li>
+                    <li><a id="generos" href="#">Generos</a></li>
+                    <li><a id="nav-filmes" href="#">Filmes</a></li>
+                    <li><a id="nav-series" href="#">Series</a></li>
+                    <li><a id="nav-fav" href="#">Minha Lista</a></li>
+                    <li>
+                        <form id="form">
+                            <input type="text" placeholder="Buscar" id="search" class="search" />
+                        </form>
+                    </li>
+                    <li>
+                        <a href="#" class="btn btn-hover">
+                            <span>Entrar</span>
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="hamburger-menu" id="hamburger-menu">
+                    <div class="hamburger"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="tags"></div>
+    <main id="main"></main>
+    <div class="pagination">
+        <div class="page" id="prev">Previous Page</div>
+        <div class="current" id="current">1</div>
+        <div class="page" id="next">Next Page</div>
+    </div>
+
+    <footer class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-4 col-md-6 col-sm-12">
+                    <div class="content">
+                        <a href="#" class="logo">
+                            <i class="bx bx-movie-play bx-tada main-color"></i>Super Fl<span
+                                class="main-color">i</span>x
+                        </a>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur
+                            adipisicing elit. Aut veniam ex quos hic id
+                            nobis beatae earum sapiente! Quod ipsa
+                            exercitationem officiis non error illum minima
+                            iusto et. Dolores, quibusdam?
+                        </p>
+                        <div class="social-list">
+                            <a href="#" class="social-item">
+                                <i class="bx bxl-facebook"></i>
+                            </a>
+                            <a href="#" class="social-item">
+                                <i class="bx bxl-twitter"></i>
+                            </a>
+                            <a href="#" class="social-item">
+                                <i class="bx bxl-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-8 col-md-6 col-sm-12">
+                    <div class="row">
+                        <div class="col-3 col-md-6 col-sm-6">
+                            <div class="content">
+                                <p><b>Flix</b></p>
+                                <ul class="footer-menu">
+                                    <li>
+                                        <a id="nav-home" href="index.html">Inicio</a>
+                                    </li>
+                                    <li>
+                                        <a id="nav-filmes" href="#">Filmes</a>
+                                    </li>
+                                    <li>
+                                        <a id="nav-series" href="#">Series</a>
+                                    </li>
+                                    <li>
+                                        <a id="nav-fav" href="#">Minha Lista</a>
+                                    </li>
+                                    <li><a href="#">Entrar</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-3 col-md-6 col-sm-6">
+                            <div class="content">
+                                <p><b>Ajuda</b></p>
+                                <ul class="footer-menu">
+                                    <li><a href="#">Sobre nos</a></li>
+                                    <li>
+                                        <a href="#">Politica de Privacidade</a>
+                                    </li>
+                                    <li><a href="#">Contato</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-3 col-md-6 col-sm-6">
+                            <div class="content">
+                                <p><b>Faça Download do App</b></p>
+                                <ul class="footer-menu">
+                                    <li>
+                                        <a href="#">
+                                            <img src="./images/google-play.png" alt="" />
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="./images/app-store.png" alt="" />
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
