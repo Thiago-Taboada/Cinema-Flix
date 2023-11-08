@@ -284,7 +284,7 @@ function showMovies(data) {
 
     document.getElementById(`more-${id}`).addEventListener('click', (e) => {
       e.stopPropagation();
-      showDetails(`${BASE_URL}/movie/${id}1${API_KEY}`);
+      showDetails(`${BASE_URL}/movie/${id}?${API_KEY}`);
     });
 
     document.getElementById(`save-${id}`).addEventListener('click', (e) => {
@@ -301,31 +301,28 @@ function showMovies(data) {
 }
 
 function showDetails(url) {
-  fetch(url)
-      .then(res => res.json())
-      .then(data => {
-          console.log(data.results)
-          const detailsContainer = document.createElement('div');
-          detailsContainer.classList.add('details-container');
-          const h3 = document.createElement('h3');
-          h3.textContent = data.id;
+  fetch(url).then(res => res.json()).then(data => {
+    console.log(data)
+    const detailsContainer = document.createElement('div');
+    detailsContainer.classList.add('details-container');
 
-          detailsContainer.innerHTML = `
-              <img src="${data.poster_path ? IMG_URL + data.poster_path : "http://via.placeholder.com/1080x1580"}" alt="${data.title}">
-              <div class="movie-info">
-                  <h3>${data.title}</h3>
-                  <div class="rating">
-                      <i class="bx bxs-star"></i>
-                      <span>${data.vote_average}</span>
-                  </div>
-              </div>
-              <div class="resumo">
-                  <h3>Resumo</h3>
-                  ${data.overview}
-              </div>
-          `;
-          document.body.appendChild(detailsContainer);
-      })
+    detailsContainer.innerHTML = `
+        <img src="${data.poster_path ? IMG_URL + data.poster_path : "http://via.placeholder.com/1080x1580"}" alt="${data.title}">
+        <div class="movie-info">
+            <h3>${data.title}</h3>
+            
+        </div>
+        <div class="resumo">
+            <h3>Resumo</h3>
+            <div class="rating">
+                <i class="bx bxs-star"></i>
+                <span>${data.vote_average}</span>
+            </div>
+            ${data.overview}
+        </div>
+    `;
+    document.body.appendChild(detailsContainer);
+})
       .catch(error => console.error('Error fetching movie details:', error));
 }
 

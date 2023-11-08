@@ -272,6 +272,49 @@ main{
 .movie:hover .resumo{
     transform:translateY(0)
 }
+/* revisar abaixo _________ */
+.details-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70%;
+    height: 70%;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.details-container .movie-info {
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.details-container .resumo {
+    width: 100%;
+    padding: 1rem;
+}
+
+.details-container h3 {
+    margin-bottom: 1rem;
+}
+
+.details-container .rating {
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+/* ˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆ */
 
 #tags{
     width:80%;
