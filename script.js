@@ -126,6 +126,7 @@ var selectedGenre = []
 
 tagsEl.style.display = 'none';
 
+
 generosLink.addEventListener('click', () => {
     if (tagsEl.style.display === 'none') {
         tagsEl.style.display = 'flex';
@@ -319,7 +320,7 @@ function showDetails(id) {
                 const backdropPath = backdrop1920 ? backdrop1920.file_path : '';
     
                 detailsContainer.innerHTML = `
-                    <div class="details">
+                    <div class="details" id="details">
                         <img src="${backdropPath ? IMG_URL + backdropPath : "http://via.placeholder.com/1080x1580"}" alt="${data.title}">
                         <div class="resumo">
                             <div class="details-info">
@@ -334,6 +335,13 @@ function showDetails(id) {
                     </div>
                 `;
                 document.body.appendChild(detailsContainer);
+
+                document.getElementById('details').addEventListener('click', () => {
+                    // document.getElementById('details').style.display = 'none';
+                    console.log("teste  ")
+                    // const element = document.getElementById("details");
+                    // element.remove();
+                });
             })
             .catch(error => console.error('Error fetching banner images:', error));
         })
