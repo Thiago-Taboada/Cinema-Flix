@@ -284,7 +284,7 @@ function showMovies(data) {
 
     document.getElementById(`more-${id}`).addEventListener('click', (e) => {
       e.stopPropagation();
-      showDetails(`${BASE_URL}/movie/${id}?${API_KEY}`);
+      showDetails(id);
     });
 
     document.getElementById(`save-${id}`).addEventListener('click', (e) => {
@@ -300,8 +300,10 @@ function showMovies(data) {
   });
 }
 
-function showDetails(url) {
-  fetch(url).then(res => res.json()).then(data => {
+function showDetails(id) {
+  let DETAILS_URL = `${BASE_URL}/movie/${id}?${API_KEY}`
+  let BANNER_URL =  `${BASE_URL}/movie/${id}/images?${API_KEY}` //usar este para o banner
+  fetch(DETAILS_URL).then(res => res.json()).then(data => {
     console.log(data)
     const detailsContainer = document.createElement('div');
     detailsContainer.classList.add('details-container');
