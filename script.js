@@ -1,6 +1,8 @@
 const API_KEY = 'api_key=a5e392e03ce076f6916518aa1a3302c3&language=pt-BR';
+const SIMPLE_API_KEY = 'api_key=a5e392e03ce076f6916518aa1a3302c3';
 const BASE_URL = 'https://api.themoviedb.org/3';
-const IMG_URL = 'https://image.tmdb.org/t/p/w500';
+const IMG_URL = 'https://image.tmdb.org/t/p/original';
+const IMG500_URL = 'https://image.tmdb.org/t/p/w500';
 const searchURL = BASE_URL + '/search/multi?include_adult=false&' + API_KEY;
 
 const HOME_URL = BASE_URL + '/discover/movie?sort_by=revenue.desc&' + API_KEY;
@@ -154,7 +156,7 @@ function setGenre() {
           selectedGenre.push(genre.id);
         }
       }
-      console.log(selectedGenre)
+      //console.log(selectedGenre)
       getMovies(API_URL + '&with_genres=' + encodeURI(selectedGenre.join(',')))
       highlightSelection()
     })
@@ -216,7 +218,7 @@ getMovies(API_URL);
 function getMovies(url) {
   lastUrl = url;
   fetch(url).then(res => res.json()).then(data => {
-    console.log(data.results)
+    //console.log(data.results)
     if (data.results.length !== 0) {
       showMovies(data.results);
       currentPage = data.page;
@@ -258,7 +260,7 @@ function showMovies(data) {
     const movieEl = document.createElement('div');
     movieEl.classList.add('movie');
     movieEl.innerHTML = `
-          <img src="${poster_path ? IMG_URL + poster_path : "http://via.placeholder.com/1080x1580"}" alt="${title}">
+          <img src="${poster_path ? IMG500_URL + poster_path : "http://via.placeholder.com/1080x1580"}" alt="${title}">
 
           <div class="movie-info">
               <h3>${title}</h3>
@@ -272,10 +274,11 @@ function showMovies(data) {
           <div class="resumo" id="resumo-${id}">
               <h3>Resumo</h3>
               ${limitedOverview}
-              <br/> 
-              <button class="know-more" id="more-${id}">Mais Informações</button>
-              <br/> 
-              <button class="save" id="save-${id}">Salvar</button>
+              <br/>
+              <div class="resumo-btn">
+                <button class="know-more" id="more-${id}">Mais Informações</button>
+                <button class="save" id="save-${id}">Salvar</button>
+              </div>
           </div>
 
       `;
@@ -301,34 +304,41 @@ function showMovies(data) {
 }
 
 function showDetails(id) {
-  let DETAILS_URL = `${BASE_URL}/movie/${id}?${API_KEY}`
-  let BANNER_URL =  `${BASE_URL}/movie/${id}/images?${API_KEY}` //usar este para o banner
-  fetch(DETAILS_URL).then(res => res.json()).then(data => {
-    console.log(data)
-    const detailsContainer = document.createElement('div');
-    detailsContainer.classList.add('details-container');
+    let DETAILS_URL = `${BASE_URL}/movie/${id}?${API_KEY}`;
+    let BANNER_URL = `${BASE_URL}/movie/${id}/images?${SIMPLE_API_KEY}`;
+  
+    fetch(DETAILS_URL)
+        .then(res => res.json())
+        .then(data => {
+            fetch(BANNER_URL)
+            .then(res => res.json())
+            .then(bannerData => {
+                const detailsContainer = document.createElement('div');
+                detailsContainer.classList.add('details-container');
+                const backdrop1920 = bannerData.backdrops.find(backdrop => backdrop.width === 1920);
+                const backdropPath = backdrop1920 ? backdrop1920.file_path : '';
+    
+                detailsContainer.innerHTML = `
+                    <div class="details">
+                        <img src="${backdropPath ? IMG_URL + backdropPath : "http://via.placeholder.com/1080x1580"}" alt="${data.title}">
+                        <div class="resumo">
+                            <div class="details-info">
+                                <h3>${data.title}</h3>
+                                
+                                <span><i class="bx bxs-star"></i> ${data.vote_average}</span>
+                            </div>
 
-    detailsContainer.innerHTML = `
-        <img src="${data.poster_path ? IMG_URL + data.poster_path : "http://via.placeholder.com/1080x1580"}" alt="${data.title}">
-        <div class="movie-info">
-            <h3>${data.title}</h3>
-            
-        </div>
-        <div class="resumo">
-            <h3>Resumo</h3>
-            <div class="rating">
-                <i class="bx bxs-star"></i>
-                <span>${data.vote_average}</span>
-            </div>
-            ${data.overview}
-        </div>
-    `;
-    document.body.appendChild(detailsContainer);
-})
-      .catch(error => console.error('Error fetching movie details:', error));
+                            <h3>Resumo</h3>
+                            ${data.overview}
+                        </div>
+                    </div>
+                `;
+                document.body.appendChild(detailsContainer);
+            })
+            .catch(error => console.error('Error fetching banner images:', error));
+        })
+    .catch(error => console.error('Error fetching movie details:', error));
 }
-
-
 
 form.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -343,6 +353,8 @@ form.addEventListener('submit', (e) => {
   }
 
 })
+
+
 
 prev.addEventListener('click', () => {
   if (prevPage > 0) {

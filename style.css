@@ -210,11 +210,13 @@ main{
     display:flex;
     flex-wrap: wrap;
     justify-content: center;
+    gap: 15px;
+    padding: 0 50px;
 }
 
 .movie {
-    width: 300px;
-    margin: 5px;
+    width: 280px;
+    /* margin: 7px; */
     box-shadow: 0.2px 4px 5px rgba(0,0,0,0.1);
     background: var(--secondary-color);
     position:relative;
@@ -269,6 +271,11 @@ main{
     transition:transform 0.3s ease-in;
 }
 
+.resumo-btn{
+    display: flex;
+    justify-content: space-between;
+}
+
 .movie:hover .resumo{
     transform:translateY(0)
 }
@@ -278,41 +285,40 @@ main{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+.details {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 70%;
     height: 70%;
-    background-color: rgba(0, 0, 0, 0.8);
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    color: var(--text-color);
 }
 
-
-
-.details-container .movie-info {
-    width: 100%;
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.details img{
+    width:100%;
 }
 
-.details-container .resumo {
+.details .resumo {
     width: 100%;
     padding: 1rem;
 }
 
-.details-container h3 {
-    margin-bottom: 1rem;
-}
-
-.details-container .rating {
+.details .details-info {
     font-size: 0.8rem;
     font-weight: 600;
     display: flex;
     flex-direction: row;
-    align-items: center;
+    justify-content: space-between;
+    align-items:center;
+}
+
+.details .details-info h3 {
+    font-size: 2rem;
 }
 /* ˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆ */
 
@@ -374,9 +380,9 @@ main{
     font-size: 16px;
     font-weight: bold;
     border:0;
-    border-radius: 50px;
-    padding: 10px 20px;
+    padding: 4px 6px;
     margin-top: 5px;
+    cursor: pointer;
 }
 /* Footer ------------------------------ */
 
