@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Entre na sua conta</title>
+        <link rel="stylesheet" type="text/css" href="index.css">
+    </head>
+    <body>
+        <div class="content_container">
+            <div class="form_container">
+                <div class="form_header_container">
+                    <h3>Login</h3>
+                </div>
+
+                <div class="form_content_container">
+                        <label for="nome">Nome Completo</label>
+                        <input type="text" id="nome" placeholder="Meu Nome Completo">
+
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="exemplo@mail.com">
+
+                        <label for="password">Senha</label>
+                        <input type="password" id="password" placeholder="Exemplo#123">
+
+                        <label for="user_name">Nome de Usuario</label>
+                        <input type="text" id="user_name" placeholder="User_name">
+
+                        <label for="dt_nasc">Data de nascimento</label>
+                        <input type="date" id="dt_nasc">
+
+                        <div class="button_container">
+                            <button onclick="login()">Entrar</button>
+                            <button onclick="register()">Cadastrar</button>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-database.js"></script>
+    <script src="index.js"></script>
+</html>

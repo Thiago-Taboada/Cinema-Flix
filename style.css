@@ -288,6 +288,7 @@ main{
     width: 100%;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.8);
+    overflow-y: auto;
 }
 .details {
     position: absolute;
@@ -301,6 +302,15 @@ main{
 
 .details img{
     width:100%;
+}
+
+.details #close-btn {
+    position: absolute;
+    top: 30px;
+    right: 10px;
+    font-size: 48px;
+    cursor: pointer;
+    color: var(--text-color);
 }
 
 .details .resumo {
@@ -384,6 +394,11 @@ main{
     margin-top: 5px;
     cursor: pointer;
 }
+
+.no-scroll {
+    overflow: hidden;
+}
+
 /* Footer ------------------------------ */
 
 footer.section {

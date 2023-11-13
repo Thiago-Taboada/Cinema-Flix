@@ -11,22 +11,22 @@ const SERIES_URL = BASE_URL + '/discover/tv?sort_by=popularity.desc&' + API_KEY;
 
 let API_URL = FILMES_URL;
 
-const navLinks = document.querySelectorAll('.nav-menu a');
+const navLinks = document.querySelectorAll('.nav-menu .nav');
 navLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const id = e.target.id;
-        if (id === 'nav-home') {
-            API_URL = HOME_URL;
-        } else if (id === 'nav-filmes') {
-            API_URL = FILMES_URL;
-        } else if (id === 'nav-series') {
-            API_URL = SERIES_URL;
-        }
-        selectedGenre = [];
-        highlightSelection()
-        getMovies(API_URL);
-    });
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    const id = e.target.id;
+    if (id === 'nav-home') {
+      API_URL = HOME_URL;
+    } else if (id === 'nav-filmes') {
+      API_URL = FILMES_URL;
+    } else if (id === 'nav-series') {
+      API_URL = SERIES_URL;
+    }
+    selectedGenre = [];
+    highlightSelection()
+    getMovies(API_URL);
+  });
 });
 
 const genres = [
@@ -128,12 +128,12 @@ tagsEl.style.display = 'none';
 
 
 generosLink.addEventListener('click', () => {
-    if (tagsEl.style.display === 'none') {
-        tagsEl.style.display = 'flex';
-        setGenre();
-    } else {
-        tagsEl.style.display = 'none';
-    }
+  if (tagsEl.style.display === 'none') {
+    tagsEl.style.display = 'flex';
+    setGenre();
+  } else {
+    tagsEl.style.display = 'none';
+  }
 });
 
 function setGenre() {
@@ -165,13 +165,13 @@ function setGenre() {
   })
   if (selectedGenre.length !== 0) {
     selectedGenre.forEach(genreId => {
-        const selectedTag = document.getElementById(genreId);
-        if (selectedTag) {
-            selectedTag.classList.add('highlight');
-            clearBtn();
-        }
+      const selectedTag = document.getElementById(genreId);
+      if (selectedTag) {
+        selectedTag.classList.add('highlight');
+        clearBtn();
+      }
     });
-} 
+  }
 }
 
 function highlightSelection() {
@@ -186,31 +186,31 @@ function highlightSelection() {
       hightlightedTag.classList.add('highlight');
     })
   }
-  
+
 
 }
 
 function clearBtn() {
   let clearBtn = document.getElementById('clear');
   if (selectedGenre.length === 0) {
-      if (clearBtn) {
-          clearBtn.remove();
-      }
+    if (clearBtn) {
+      clearBtn.remove();
+    }
   } else {
-      if (clearBtn) {
-          clearBtn.classList.add('highlight');
-      } else {
-          let clear = document.createElement('div');
-          clear.classList.add('tag', 'highlight');
-          clear.id = 'clear';
-          clear.innerText = 'Limpar Filtros';
-          clear.addEventListener('click', () => {
-              selectedGenre = [];
-              setGenre();
-              getMovies(API_URL);
-          });
-          tagsEl.append(clear);
-      }
+    if (clearBtn) {
+      clearBtn.classList.add('highlight');
+    } else {
+      let clear = document.createElement('div');
+      clear.classList.add('tag', 'highlight');
+      clear.id = 'clear';
+      clear.innerText = 'Limpar Filtros';
+      clear.addEventListener('click', () => {
+        selectedGenre = [];
+        setGenre();
+        getMovies(API_URL);
+      });
+      tagsEl.append(clear);
+    }
   }
 }
 
@@ -300,51 +300,52 @@ function showMovies(data) {
       console.log("resumo clicked " + id);
     });
 
-    
+
   });
 }
 
 function showDetails(id) {
-    let DETAILS_URL = `${BASE_URL}/movie/${id}?${API_KEY}`;
-    let BANNER_URL = `${BASE_URL}/movie/${id}/images?${SIMPLE_API_KEY}`;
-  
-    fetch(DETAILS_URL)
-        .then(res => res.json())
-        .then(data => {
-            fetch(BANNER_URL)
-            .then(res => res.json())
-            .then(bannerData => {
-                const detailsContainer = document.createElement('div');
-                detailsContainer.classList.add('details-container');
-                const backdrop1920 = bannerData.backdrops.find(backdrop => backdrop.width === 1920);
-                const backdropPath = backdrop1920 ? backdrop1920.file_path : '';
-    
-                detailsContainer.innerHTML = `
-                    <div class="details" id="details">
-                        <img src="${backdropPath ? IMG_URL + backdropPath : "http://via.placeholder.com/1080x1580"}" alt="${data.title}">
-                        <div class="resumo">
-                            <div class="details-info">
-                                <h3>${data.title}</h3>
-                                
-                                <span><i class="bx bxs-star"></i> ${data.vote_average}</span>
-                            </div>
+  let DETAILS_URL = `${BASE_URL}/movie/${id}?${API_KEY}`;
+  let BANNER_URL = `${BASE_URL}/movie/${id}/images?${SIMPLE_API_KEY}`;
 
-                            <h3>Resumo</h3>
-                            ${data.overview}
+  fetch(DETAILS_URL)
+    .then(res => res.json())
+    .then(data => {
+      fetch(BANNER_URL)
+        .then(res => res.json())
+        .then(bannerData => {
+          const detailsContainer = document.createElement('div');
+          detailsContainer.classList.add('details-container');
+          detailsContainer.id = "details-container";
+          const backdrop1920 = bannerData.backdrops.find(backdrop => backdrop.width === 1920);
+          const backdropPath = backdrop1920 ? backdrop1920.file_path : '';
+
+          detailsContainer.innerHTML = `
+                    <div class="details" id="details">
+                      <i class="bx bx-x bx-tada" id="close-btn"></i>
+                      <img src="${backdropPath ? IMG_URL + backdropPath : "http://via.placeholder.com/1080x1580"}" alt="${data.title}">
+                      <div class="resumo" id="resumo">
+                        <div class="details-info">
+                          <h3>${data.title}</h3>
+                            
+                          <span><i class="bx bxs-star"></i> ${data.vote_average}</span>
+                        </div>
+                          <h3>Resumo</h3>
+                          <p>${data.overview}</p>
                         </div>
                     </div>
                 `;
-                document.body.appendChild(detailsContainer);
-
-                document.getElementById('details').addEventListener('click', () => {
-                    // document.getElementById('details').style.display = 'none';
-                    console.log("teste  ")
-                    // const element = document.getElementById("details");
-                    // element.remove();
-                });
-            })
-            .catch(error => console.error('Error fetching banner images:', error));
+          document.body.appendChild(detailsContainer);
+          document.body.classList.add('no-scroll');
+          document.getElementById('close-btn').addEventListener('click', (e) => {
+            e.stopPropagation();
+            document.body.classList.remove('no-scroll');
+            const element = document.getElementById("details-container");
+            element.remove();
+          });
         })
+        .catch(error => console.error('Error fetching banner images:', error));
+    })
     .catch(error => console.error('Error fetching movie details:', error));
 }
 
