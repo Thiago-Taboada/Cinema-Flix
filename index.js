@@ -3,6 +3,7 @@ const firebaseConfig = {
     authDomain: "cineflix-4b1aa.firebaseapp.com",
     projectId: "cineflix-4b1aa",
     storageBucket: "cineflix-4b1aa.appspot.com",
+    databaseURL: "https://cineflix-4b1aa-default-rtdb.firebaseio.com/",
     messagingSenderId: "542686761142",
     appId: "1:542686761142:web:5cd7a5976705ae594a1617",
     measurementId: "G-FM4XWCE8VE"
@@ -13,6 +14,29 @@ firebase.initializeApp(firebaseConfig);
 
 const auth = firebase.auth()
 const database = firebase.database()
+
+const navLinks = document.querySelectorAll('.form_content_container .change_form');
+navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const id = e.target.id;
+        if (id === 'frm-to-register') {
+            var hideElements = document.getElementsByClassName('login');
+            var showElements = document.getElementsByClassName('register');
+        } else if (id === 'frm-to-login') {
+            var hideElements = document.getElementsByClassName('register');
+            var showElements = document.getElementsByClassName('login');
+        }
+
+        for (var i = 0; i < hideElements.length; i++) {
+            hideElements[i].style.display = 'none';
+        }
+        for (var i = 0; i < showElements.length; i++) {
+            showElements[i].style.display = 'block';
+        }
+    });
+});
+
 
 function register() {
     // Get all our input fields
@@ -134,21 +158,21 @@ function validate_password(password) {
     }
 
     if (password.length < 6) {
-      return false;
+        return false;
     }
-  
+
     if (!/[a-z]/.test(password) || !/[A-Z]/.test(password)) {
-      return false;
+        return false;
     }
-  
+
     if (!/[!@#$%^&*()_+{}\[\]:;<>,.?~\\-]/.test(password)) {
-      return false;
+        return false;
     }
-  
+
     if (/\s/.test(password)) {
-      return false;
+        return false;
     }
-  
+
     return true;
 }
 
@@ -159,33 +183,33 @@ function validate_dt(dateOfBirth) {
     }
 
     var dob = new Date(dateOfBirth);
-  
+
     var currentDate = new Date();
-  
+
     var age = currentDate.getFullYear() - dob.getFullYear();
-  
+
     if (
-      currentDate.getMonth() < dob.getMonth() ||
-      (currentDate.getMonth() === dob.getMonth() &&
-        currentDate.getDate() < dob.getDate())
+        currentDate.getMonth() < dob.getMonth() ||
+        (currentDate.getMonth() === dob.getMonth() &&
+            currentDate.getDate() < dob.getDate())
     ) {
-      age--;
+        age--;
     }
-  
+
     return age >= 18;
 }
 
 function validate_name(name) {
     if (name.length < 6) {
-      return false;
+        return false;
     }
-  
+
     if (!/^[a-zA-Z\s]+$/.test(name)) {
-      return false;
+        return false;
     }
 
     return true;
-  }
+}
 
 function validate_username(user_name) {
     if (user_name == null) {
@@ -197,8 +221,8 @@ function validate_username(user_name) {
     }
 
     if (user_name.length < 6) {
-      return false;
+        return false;
     }
-  
+
     return true;
 }  

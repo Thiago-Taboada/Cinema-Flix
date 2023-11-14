@@ -1,43 +1,180 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>Entre na sua conta</title>
-        <link rel="stylesheet" type="text/css" href="index.css">
-    </head>
-    <body>
-        <div class="content_container">
-            <div class="form_container">
-                <div class="form_header_container">
-                    <h3>Login</h3>
-                </div>
 
-                <div class="form_content_container">
-                        <label for="nome">Nome Completo</label>
-                        <input type="text" id="nome" placeholder="Meu Nome Completo">
+<head>
 
-                        <label for="email">Email</label>
-                        <input type="email" id="email" placeholder="exemplo@mail.com">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Cinema Flix - Entre na sua conta</title>
 
-                        <label for="password">Senha</label>
-                        <input type="password" id="password" placeholder="Exemplo#123">
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+        integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
+        crossorigin="anonymous" />
+    <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="grid.css" />
+</head>
 
-                        <label for="user_name">Nome de Usuario</label>
-                        <input type="text" id="user_name" placeholder="User_name">
+<body>
+    <div class="nav-wrapper">
+        <div class="container">
+            <div class="nav">
+                <a href="index.html" class="logo">
+                    <i class="bx bx-movie-play bx-tada main-color"></i>Cinema Fl<span class="main-color">i</span>x
+                </a>
+                <ul class="nav-menu" id="nav-menu">
+                    <li><a class="nav" id="nav-home" href="index.html">Inicio</a></li>
+                    <li><a class="nav" id="generos" href="#">Generos</a></li>
+                    <li><a class="nav" id="nav-filmes" href="#">Filmes</a></li>
+                    <li><a class="nav" id="nav-series" href="#">Series</a></li>
+                    <li><a class="nav" id="nav-fav" href="#">Minha Lista</a></li>
+                    <li>
+                        <form id="form">
+                            <input type="text" placeholder="Buscar" id="search" class="search" />
+                        </form>
+                    </li>
+                    <li>
+                        <a href="login.html" class="btn btn-hover">
+                            <span>Entrar</span>
+                        </a>
+                    </li>
+                </ul>
 
-                        <label for="dt_nasc">Data de nascimento</label>
-                        <input type="date" id="dt_nasc">
-
-                        <div class="button_container">
-                            <button onclick="login()">Entrar</button>
-                            <button onclick="register()">Cadastrar</button>
-                        </div>
+                <div class="hamburger-menu" id="hamburger-menu">
+                    <div class="hamburger"></div>
                 </div>
             </div>
         </div>
-    </body>
+    </div>
+    <div class="pre_form_container">
+        <div class="form_container">
+            <div class="form_header_container">
+                <h3 class="login">Login</h3>
+                <h3 class="register">Cadastrar</h3>
+            </div>
+            <div class="form_content_container">
+                <label for="nome" class="register">Nome Completo</label>
+                <input type="text" class="form_input register" id="nome" placeholder="Meu Nome Completo">
+
+                <label for="email">Email</label>
+                <input type="email" class="form_input" id="email" placeholder="exemplo@mail.com">
+
+                <label for="password">Senha</label>
+                <input type="password" class="form_input" id="password" placeholder="Exemplo#123">
+
+                <label for="user_name" class="register">Nome de Usuario</label>
+                <input type="text" class="form_input register" id="user_name" placeholder="User_name">
+
+                <label for="dt_nasc" class="register">Data de nascimento</label>
+                <input type="date" class="form_input register" id="dt_nasc">
+
+                <button class="form_button login" onclick="login()">Entrar</button>
+                <button class="form_button register" onclick="register()">Cadastrar</button>
+
+                <a class="change_form login" id="frm-to-register" href="#">Ainda não tem conta? Cadastre-se</a>
+                <a class="change_form register" id="frm-to-login" href="#">Já possui uma conta? Faça login</a>
+            </div>
+        </div>
+    </div>
+    <footer class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-4 col-md-6 col-sm-12">
+                    <div class="content">
+                        <a href="#" class="logo">
+                            <i class="bx bx-movie-play bx-tada main-color"></i>Cinema Fl<span
+                                class="main-color">i</span>x
+                        </a>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur
+                            adipisicing elit. Aut veniam ex quos hic id
+                            nobis beatae earum sapiente! Quod ipsa
+                            exercitationem officiis non error illum minima
+                            iusto et. Dolores, quibusdam?
+                        </p>
+                        <div class="social-list">
+                            <a href="#" class="social-item">
+                                <i class="bx bxl-facebook"></i>
+                            </a>
+                            <a href="#" class="social-item">
+                                <i class="bx bxl-twitter"></i>
+                            </a>
+                            <a href="#" class="social-item">
+                                <i class="bx bxl-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-8 col-md-6 col-sm-12">
+                    <div class="row">
+                        <div class="col-3 col-md-6 col-sm-6">
+                            <div class="content">
+                                <p><b>Flix</b></p>
+                                <ul class="footer-menu">
+                                    <li>
+                                        <a id="nav-home" href="index.html">Inicio</a>
+                                    </li>
+                                    <li>
+                                        <a id="nav-filmes" href="#">Filmes</a>
+                                    </li>
+                                    <li>
+                                        <a id="nav-series" href="#">Series</a>
+                                    </li>
+                                    <li>
+                                        <a id="nav-fav" href="#">Minha Lista</a>
+                                    </li>
+                                    <li><a href="login.html">Entrar</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-3 col-md-6 col-sm-6">
+                            <div class="content">
+                                <p><b>Ajuda</b></p>
+                                <ul class="footer-menu">
+                                    <li><a href="#">Sobre nos</a></li>
+                                    <li>
+                                        <a href="#">Politica de Privacidade</a>
+                                    </li>
+                                    <li><a href="#">Contato</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-3 col-md-6 col-sm-6">
+                            <div class="content">
+                                <p><b>Faça Download do App</b></p>
+                                <ul class="footer-menu">
+                                    <li>
+                                        <a href="#">
+                                            <img src="./images/google-play.png" alt="" />
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="./images/app-store.png" alt="" />
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+<!-- SO FUNCIONA COM NODE.JS, USAR A VERSAO 8.6.8 para js tradicional
     <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-database.js"></script>
-    <script src="index.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-database.js"></script> 
+    -->
+
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+<script src="index.js"></script>
+
 </html>

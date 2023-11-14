@@ -1,3 +1,5 @@
+
+// THE MOVIE DATABASE API:
 const API_KEY = 'api_key=a5e392e03ce076f6916518aa1a3302c3&language=pt-BR';
 const SIMPLE_API_KEY = 'api_key=a5e392e03ce076f6916518aa1a3302c3';
 const BASE_URL = 'https://api.themoviedb.org/3';
