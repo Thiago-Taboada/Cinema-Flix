@@ -619,6 +619,13 @@ footer .content {
     border-bottom: 2px solid var(--main-color);
 }
 
+input[type="date"]::-webkit-calendar-picker-indicator {
+    background-color: var(--text-color);
+    cursor: pointer;
+    margin-right: 10px;
+  }
+
+
 .form_button {
     width: 100%;
     height: 40px;
