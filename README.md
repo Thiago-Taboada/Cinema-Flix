@@ -9,6 +9,7 @@ Link GitHub Pages: [Cinema Flix](https://thiago-taboada.github.io/Cinema-Flix/)
 - Search for your favorite movies and series.
 - Browse through popular, top-rated, and upcoming content.
 - Get detailed information about each title, including, ratings, and more.
+- Create an account and make your own content.
 
 ## Technologies Used
 
@@ -16,6 +17,7 @@ Link GitHub Pages: [Cinema Flix](https://thiago-taboada.github.io/Cinema-Flix/)
 - CSS
 - JavaScript
 - The Movie Database (TMDB) API
+- Firebase
 
 ## Usage
 
