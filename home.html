@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
-    <title>Cinema Flix - Entre na sua conta</title>
+    <title>Cinema Flix</title>
 
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap"
@@ -17,17 +17,27 @@
     <link rel="stylesheet" href="grid.css" />
 </head>
 
-<body>
+<body class="restricted">
     <div class="nav-wrapper">
         <div class="container">
             <div class="nav">
-                <a href="index.html" class="logo">
+                <a href="home.html" class="logo">
                     <i class="bx bx-movie-play bx-tada main-color"></i>Cinema Fl<span class="main-color">i</span>x
                 </a>
                 <ul class="nav-menu" id="nav-menu">
+                    <li><a class="nav" id="nav-home" href="home.html">Inicio</a></li>
+                    <li><a class="nav" id="generos" href="#">Generos</a></li>
+                    <li><a class="nav" id="nav-filmes" href="#">Filmes</a></li>
+                    <li><a class="nav" id="nav-series" href="#">Series</a></li>
+                    <li><a class="nav" id="nav-fav" href="#">Minha Lista</a></li>
                     <li>
-                        <a href="index.html" class="btn btn-hover">
-                            <span>Entrar</span>
+                        <form id="form-search">
+                            <input type="text" placeholder="Buscar" id="search" class="search" />
+                        </form>
+                    </li>
+                    <li>
+                        <a href="#" class="btn btn-hover" onclick="logout()">
+                            <span>Sair</span>
                         </a>
                     </li>
                 </ul>
@@ -38,61 +48,15 @@
             </div>
         </div>
     </div>
-    <div class="pre_form_container">
-        <div class="form_container">
-            <div class="form_header_container">
-                <h3 class="login">Login</h3>
-                <h3 class="register">Cadastrar</h3>
-            </div>
-            <div class="form_content_container">
-                <label for="nome" class="register">Nome Completo</label>
-                <input type="text" class="form_input register" id="nome" placeholder="Meu Nome Completo" onchange="onChangeName()">
-                <div class="error" id="name-required-error">Nome é obrigatório</div>
-                <div class="error" id="name-invalid-error">Nome inválido</div>
 
-                <label for="email">Email</label>
-                <input type="email" class="form_input" id="email" placeholder="exemplo@mail.com" onchange="onChangeEmail()">
-                <div class="error" id="email-required-error">Email é obrigatório</div>
-                <div class="error" id="email-invalid-error">Email inválido</div>
-
-                <label for="password">Senha</label>
-                <input type="password" class="form_input" id="password" placeholder="Exemplo#123" onchange="onChangePassword()">
-                <div class="error" id="password-required-error">Senha é obrigatória</div>
-                <div class="error" id="password-invalid-error">
-                    <p>Senha inválida, a senha deve conter no minimo:
-                        <br>
-                        6 caracteres
-                        <br>
-                        1 letra maiuscula
-                        <br>
-                        1 letra minuscula
-                        <br>
-                        1 numero
-                        <br>
-                        1 simbolo
-                    </p>
-                </div>
-
-                <label for="user_name" class="register">Nome de Usuario</label>
-                <input type="text" class="form_input register" id="user_name" placeholder="User_name" onchange="onChangeUserName()">
-                <div class="error" id="username-required-error">Nome de Usuario é obrigatório</div>
-                <div class="error" id="username-invalid-error">Nome de Usuario inválido, deve conter no minimo 6 caracteres</div>
-
-                <label for="dt_nasc" class="register">Data de nascimento</label>
-                <input type="date" class="form_input register" id="dt_nasc" onchange="onChangeDate()">
-                <div class="error" id="dt-required-error">Data de nascimento é obrigatória</div>
-                <div class="error" id="dt-invalid-error">Data de nascimento inválida</div>
-
-
-                <div class="error" id="error-message"></div>
-                <button class="form_button login" id="login-button" disabled="true" onclick="login()">Entrar</button>
-                <button class="form_button register" id="register-button" disabled="true" onclick="register()">Cadastrar</button>
-
-                <a class="change_form login" id="frm-to-register" href="#">Ainda não tem conta? Cadastre-se</a>
-                <a class="change_form register" id="frm-to-login" href="#">Já possui uma conta? Faça login</a>
-            </div>
-        </div>
+    <div id="tags"></div>
+    <main id="main"></main>
+    <div class="pagination">
+        <div class="page" id="prev">Previous Page</div>
+        <div class="current" id="current">1</div>
+        <div class="page" id="next">Next Page</div>
     </div>
+
     <footer class="section">
         <div class="container">
             <div class="row">
@@ -129,7 +93,16 @@
                                 <p><b>Flix</b></p>
                                 <ul class="footer-menu">
                                     <li>
-                                        <a id="nav-home" href="index.html">Inicio</a>
+                                        <a id="nav-home" href="home.html">Inicio</a>
+                                    </li>
+                                    <li>
+                                        <a id="nav-filmes" href="#">Filmes</a>
+                                    </li>
+                                    <li>
+                                        <a id="nav-series" href="#">Series</a>
+                                    </li>
+                                    <li>
+                                        <a id="nav-fav" href="#">Minha Lista</a>
                                     </li>
                                     <li><a href="index.html">Entrar</a></li>
                                 </ul>
@@ -170,18 +143,18 @@
             </div>
         </div>
     </footer>
-</body>
-<!-- SO FUNCIONA COM NODE.JS, USAR A VERSAO 8.6.8 para js tradicional
+    <!-- SO FUNCIONA COM NODE.JS, USAR A VERSAO 8.6.8 para js tradicional
     <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-database.js"></script> 
     -->
 
-<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
-<script src="script.js"></script>
-<script src="connection.js"></script>
-<script src="validation.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+
+    <script src="script.js"></script>
+    <script src="connection.js"></script>
+</body>
 
 </html>

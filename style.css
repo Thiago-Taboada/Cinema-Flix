@@ -27,11 +27,12 @@ body {
     background-color: var(--body-bg);
     color: var(--text-color);
     padding-top: var(--nav-height);
+    display: block;
 }
 body::-webkit-scrollbar {
     width: 0;
     height: 0;
-  }
+}
 
 a {
     text-decoration: none;
@@ -40,6 +41,9 @@ a {
 
 img {
     max-width: 100%;
+}
+.restricted{
+    display: none;
 }
 
 .main-color {
@@ -50,15 +54,6 @@ img {
     max-width: 1920px;
     padding: 0 40px;
     margin: auto;
-}
-
-.overlay {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .nav-wrapper {
@@ -556,10 +551,14 @@ footer .content {
 
 
 /* LOGIN - REGISTER FRM */
+.error{
+    display: none;
+}
 
 .pre_form_container {
     width: 100%;
-    height: calc(100vh - var(--nav-height));
+    min-height: calc(100vh - var(--nav-height));
+    height: fit-content;
     display: flex;
     justify-content: center;
 }

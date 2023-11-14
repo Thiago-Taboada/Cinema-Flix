@@ -11,7 +11,8 @@ const HOME_URL = BASE_URL + '/discover/movie?sort_by=revenue.desc&' + API_KEY;
 const FILMES_URL = BASE_URL + '/discover/movie?sort_by=popularity.desc&' + API_KEY;
 const SERIES_URL = BASE_URL + '/discover/tv?sort_by=popularity.desc&' + API_KEY;
 
-let API_URL = FILMES_URL;
+let API_URL = HOME_URL;
+
 
 const navLinks = document.querySelectorAll('.nav-menu .nav');
 navLinks.forEach(link => {
@@ -26,10 +27,11 @@ navLinks.forEach(link => {
       API_URL = SERIES_URL;
     }
     selectedGenre = [];
-    highlightSelection()
+    highlightSelection();
     getMovies(API_URL);
   });
 });
+
 
 const genres = [
   {
@@ -108,7 +110,7 @@ const genres = [
 ]
 
 const main = document.getElementById('main');
-const form = document.getElementById('form');
+const formSearch = document.getElementById('form-search');
 const search = document.getElementById('search');
 const tagsEl = document.getElementById('tags');
 const generosLink = document.getElementById('generos');
@@ -127,7 +129,6 @@ var selectedGenre = []
 //setGenre();
 
 tagsEl.style.display = 'none';
-
 
 generosLink.addEventListener('click', () => {
   if (tagsEl.style.display === 'none') {
@@ -351,7 +352,7 @@ function showDetails(id) {
     .catch(error => console.error('Error fetching movie details:', error));
 }
 
-form.addEventListener('submit', (e) => {
+formSearch.addEventListener('submit', (e) => {
   e.preventDefault();
 
   const searchTerm = search.value;
