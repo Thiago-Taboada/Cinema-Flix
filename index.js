@@ -1,3 +1,4 @@
+// FIREBASE AND VALIDATIONS
 const firebaseConfig = {
     apiKey: "AIzaSyDrLvy384Zgqli1ru50VuoZhL2qu69GC6g",
     authDomain: "cineflix-4b1aa.firebaseapp.com",
@@ -196,7 +197,11 @@ function validate_dt(dateOfBirth) {
         age--;
     }
 
-    return age >= 18;
+    if(age >= 18 || age <= 120){   
+        return true;
+    }
+
+    return false;
 }
 
 function validate_name(name) {
