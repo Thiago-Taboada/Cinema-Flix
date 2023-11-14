@@ -132,14 +132,13 @@ function login() {
             var user_data = {
                 last_login: Date.now()
             }
-
             database_ref.child('users/' + user.uid).update(user_data)
 
-            alert('Fazendo login!!')
+            console.log('Fazendo login!!')
 
         })
         .then(function () {
-            window.location.href = "index.html";
+            window.location.href = "home.html";
         })
         .catch(function (error) {
             getErrorMessage(error)
