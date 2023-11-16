@@ -1,7 +1,9 @@
 
 // THE MOVIE DATABASE API:
-const API_KEY = process.env.SECRET_API_KEY;
-const SIMPLE_API_KEY = process.env.SECRET_SIMPLE_API_KEY;
+//const API_KEY = process.env.SECRET_API_KEY;
+//const SIMPLE_API_KEY = process.env.SECRET_SIMPLE_API_KEY;
+const API_KEY = 'api_key=a5e392e03ce076f6916518aa1a3302c3&language=pt-BR';
+const SIMPLE_API_KEY = 'api_key=a5e392e03ce076f6916518aa1a3302c3';
 const BASE_URL = 'https://api.themoviedb.org/3';
 const IMG_URL = 'https://image.tmdb.org/t/p/original';
 const IMG500_URL = 'https://image.tmdb.org/t/p/w500';
