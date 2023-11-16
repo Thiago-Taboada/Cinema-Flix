@@ -20,9 +20,9 @@ jobs:
         cache: 'npm'
     - name: Set up environment variables
       run: |
-        echo "FIREBASE_CONFIG=$FIREBASE_CONFIG" >> $GITHUB_ENV
-        echo "API_KEY=$API_KEY" >> $GITHUB_ENV
-        echo "TOKEN=$TOKEN" >> $GITHUB_ENV
+        echo "SECRET_FIREBASE_CONFIG=$SECRET_FIREBASE_CONFIG" >> $GITHUB_ENV
+        echo "SECRET_API_KEY=$SECRET_API_KEY" >> $GITHUB_ENV
+        echo "SECRET_SIMPLE_API_KEY=$SECRET_SIMPLE_API_KEY" >> $GITHUB_ENV
 
   deploy:
     runs-on: ubuntu-latest
