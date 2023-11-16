@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap" rel="stylesheet" />
-    <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap"
+        rel="stylesheet" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="grid.css" />
     <link rel="icon" href="images/favico.svg" type="image/x-icon">
     <title>Cinema Flix - Entre na sua conta</title>
@@ -39,20 +40,24 @@
             <div class="form_header_container">
                 <h3 class="login">Login</h3>
                 <h3 class="register">Cadastrar</h3>
+                <h3 class="recover">Redefinir Senha</h3>
             </div>
             <div class="form_content_container">
                 <label for="nome" class="register">Nome Completo</label>
-                <input type="text" class="form_input register" id="nome" placeholder="Meu Nome Completo" onchange="onChangeName()">
+                <input type="text" class="form_input register" id="nome" placeholder="Meu Nome Completo"
+                    onchange="onChangeName()">
                 <div class="error" id="name-required-error">Nome é obrigatório</div>
                 <div class="error" id="name-invalid-error">Nome inválido</div>
 
                 <label for="email">Email</label>
-                <input type="email" class="form_input" id="email" placeholder="exemplo@mail.com" onchange="onChangeEmail()">
+                <input type="email" class="form_input email" id="email" placeholder="exemplo@mail.com"
+                    onchange="onChangeEmail()">
                 <div class="error" id="email-required-error">Email é obrigatório</div>
                 <div class="error" id="email-invalid-error">Email inválido</div>
 
                 <label for="password">Senha</label>
-                <input type="password" class="form_input" id="password" placeholder="Exemplo#123" onchange="onChangePassword()">
+                <input type="password" class="form_input password" id="password" placeholder="Exemplo#123"
+                    onchange="onChangePassword()">
                 <div class="error" id="password-required-error">Senha é obrigatória</div>
                 <div class="error" id="password-invalid-error">
                     <p>Senha inválida, a senha deve conter no minimo:
@@ -70,9 +75,11 @@
                 </div>
 
                 <label for="user_name" class="register">Nome de Usuario</label>
-                <input type="text" class="form_input register" id="user_name" placeholder="User_name" onchange="onChangeUserName()">
+                <input type="text" class="form_input register" id="user_name" placeholder="User_name"
+                    onchange="onChangeUserName()">
                 <div class="error" id="username-required-error">Nome de Usuario é obrigatório</div>
-                <div class="error" id="username-invalid-error">Nome de Usuario inválido, deve conter no minimo 6 caracteres</div>
+                <div class="error" id="username-invalid-error">Nome de Usuario inválido, deve conter no minimo 6
+                    caracteres</div>
 
                 <label for="dt_nasc" class="register">Data de nascimento</label>
                 <input type="date" class="form_input register" id="dt_nasc" onchange="onChangeDate()">
@@ -83,9 +90,11 @@
                 <div class="error" id="error-message"></div>
                 <button class="form_button login" id="login-button" disabled="true" onclick="login()">Entrar</button>
                 <button class="form_button register" id="register-button" disabled="true" onclick="register()">Cadastrar</button>
+                <button class="form_button recover" id="recover-button" onclick="recover()">Enviar Email</button>
 
                 <a class="change_form login" id="frm-to-register" href="#">Ainda não tem conta? Cadastre-se</a>
-                <a class="change_form register" id="frm-to-login" href="#">Já possui uma conta? Faça login</a>
+                <a class="change_form register recover" id="frm-to-login" href="#">Já possui uma conta? Faça login</a>
+                <a class="change_form login" id="frm-to-recover" href="#">Esqueceu a senha?</a>
             </div>
         </div>
     </div>
@@ -99,11 +108,7 @@
                                 class="main-color">i</span>x
                         </a>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur
-                            adipisicing elit. Aut veniam ex quos hic id
-                            nobis beatae earum sapiente! Quod ipsa
-                            exercitationem officiis non error illum minima
-                            iusto et. Dolores, quibusdam?
+                            Descubra uma variedade de gêneros, desde dramas intensos até aventuras cheias de ação. Em nossa plataforma, cada filme é uma experiência única. Seja parte da jornada, Encontre seu próximo filme favorito aqui.
                         </p>
                         <div class="social-list">
                             <a href="#" class="social-item">
@@ -176,6 +181,7 @@
 <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-storage.js"></script>
 <script src="script.js"></script>
 <script src="connection.js"></script>
 <script src="validation.js"></script>

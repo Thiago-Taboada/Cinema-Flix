@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap"
+        rel="stylesheet" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="grid.css" />
+    <link rel="icon" href="images/favico.svg" type="image/x-icon">
+    <title>Cinema Flix</title>
+</head>
+
+<body class="restricted">
+    <div class="nav-wrapper">
+        <div class="container">
+            <div class="nav">
+                <a href="home.html" class="logo">
+                    <i class="bx bx-movie-play bx-tada main-color"></i>Cinema Fl<span class="main-color">i</span>x
+                </a>
+                <ul class="nav-menu" id="nav-menu">
+                    <li><a class="nav" id="nav-home" href="home.html">Inicio</a></li>
+                    <li><a class="nav" id="generos" href="#">Generos</a></li>
+                    <li><a class="nav" id="nav-filmes" href="#">Filmes</a></li>
+                    <li><a class="nav" id="nav-series" href="#">Series</a></li>
+                    <li><a class="nav" id="nav-fav" href="fav.html">Minha Lista</a></li>
+                    <li>
+                        <form id="form-search">
+                            <input type="text" placeholder="Buscar" id="search" class="search" />
+                        </form>
+                    </li>
+                    <li>
+                        <a href="#" class="btn btn-hover" onclick="logout()">
+                            <span>Sair</span>
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="hamburger-menu" id="hamburger-menu">
+                    <div class="hamburger"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="fav-header">
+        <div class="section-header">
+            <h3>Minha Lista</h3>
+            <div>
+                <p id="open-upload"><i class="bx bx-upload main-color"></i> Adicionar Filme</p>
+            </div>
+        </div>
+    </div>
+    <div class="upload-container" id="upload-container">
+        <div class="upload-fields">
+            <h3>Upload de Arquivo</h3>
+            <label for="titleVideo" class="upload-label">Titulo do filme</label>
+            <input type="text" id="titleVideo" class="upload-input" placeholder="Titulo Exemplo"
+                onchange="handleFileChange()">
+            <label for="videoInput" class="upload-label"><i class="bx bx-upload main-color"></i> Selecione o
+                arquivo</label>
+            <input type="file" id="videoInput" class="upload-input" accept="video/*" onchange="handleFileChange()">
+            <button id="uploadButton" onclick="uploadVideo()" disabled="true">Fazer Upload</button>
+
+            <p id="loading"></p>
+
+        </div>
+    </div>
+    <main id="video-main"></main>
+
+    <footer class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-4 col-md-6 col-sm-12">
+                    <div class="content">
+                        <a href="#" class="logo">
+                            <i class="bx bx-movie-play bx-tada main-color"></i>Cinema Fl<span
+                                class="main-color">i</span>x
+                        </a>
+                        <p>
+                            Descubra uma variedade de gêneros, desde dramas intensos até aventuras cheias de ação. Em nossa plataforma, cada filme é uma experiência única. Seja parte da jornada, Encontre seu próximo filme favorito aqui.
+                        </p>
+                        <div class="social-list">
+                            <a href="#" class="social-item">
+                                <i class="bx bxl-facebook"></i>
+                            </a>
+                            <a href="#" class="social-item">
+                                <i class="bx bxl-twitter"></i>
+                            </a>
+                            <a href="#" class="social-item">
+                                <i class="bx bxl-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-8 col-md-6 col-sm-12">
+                    <div class="row">
+                        <div class="col-3 col-md-6 col-sm-6">
+                            <div class="content">
+                                <p><b>Flix</b></p>
+                                <ul class="footer-menu">
+                                    <li>
+                                        <a id="nav-home" href="home.html">Inicio</a>
+                                    </li>
+                                    <li>
+                                        <a id="nav-filmes" href="#">Filmes</a>
+                                    </li>
+                                    <li>
+                                        <a id="nav-series" href="#">Series</a>
+                                    </li>
+                                    <li>
+                                        <a id="nav-fav" href="#">Minha Lista</a>
+                                    </li>
+                                    <li><a href="index.html">Entrar</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-3 col-md-6 col-sm-6">
+                            <div class="content">
+                                <p><b>Ajuda</b></p>
+                                <ul class="footer-menu">
+                                    <li><a href="#">Sobre nos</a></li>
+                                    <li>
+                                        <a href="#">Politica de Privacidade</a>
+                                    </li>
+                                    <li><a href="#">Contato</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-3 col-md-6 col-sm-6">
+                            <div class="content">
+                                <p><b>Faça Download do App</b></p>
+                                <ul class="footer-menu">
+                                    <li>
+                                        <a href="#">
+                                            <img src="./images/google-play.png" alt="" />
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="./images/app-store.png" alt="" />
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-storage.js"></script>
+
+    <script src="script.js"></script>
+    <script src="connection.js"></script>
+</body>
+
+</html>

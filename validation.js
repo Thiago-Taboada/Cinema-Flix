@@ -134,7 +134,6 @@ function toggleUsernameErrors(){
 
 function toggleDateErrors(){
     const dtNasc = form.dtNasc().value;
-    console.log(dtNasc)
     if (!dtNasc) {
         form.dtRequiredError().style.display = "block";
         form.dtInvalidError().style.display = "none";

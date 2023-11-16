@@ -19,12 +19,28 @@ navLinks.forEach(link => {
   link.addEventListener('click', (e) => {
     e.preventDefault();
     const id = e.target.id;
+    var urlAtual = window.location.href;
+    if (urlAtual.endsWith("fav.html")) {
+      if (id === 'nav-home') {
+        API_URL = HOME_URL;
+      } else if (id === 'nav-filmes') {
+        API_URL = FILMES_URL;
+      } else if (id === 'nav-series') {
+        API_URL = SERIES_URL;
+      } else if (id === 'nav-fav') {
+        window.location.href = "fav.html";
+      }
+      window.location.href = "home.html";
+    }
+    console.log(urlAtual)
     if (id === 'nav-home') {
       API_URL = HOME_URL;
     } else if (id === 'nav-filmes') {
       API_URL = FILMES_URL;
     } else if (id === 'nav-series') {
       API_URL = SERIES_URL;
+    } else if (id === 'nav-fav') {
+      window.location.href = "fav.html";
     }
     selectedGenre = [];
     highlightSelection();
