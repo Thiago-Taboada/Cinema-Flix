@@ -413,6 +413,9 @@ function getErrorMessage(error) {
     if (error.code == "auth/email-already-in-use") {
         msg = "Este email ja esta em uso!";
     }
+    if (error.code == "auth/too-many-requests") {
+        msg = "O acesso a esta conta foi temporariamente desativado devido a muitas tentativas de login mal-sucedidas.";
+    }
     console.log(error.code)
     console.log(error.message)
 
