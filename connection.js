@@ -27,16 +27,8 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-const firebaseConfig = {
-    apiKey: "AIzaSyDrLvy384Zgqli1ru50VuoZhL2qu69GC6g",
-    authDomain: "cineflix-4b1aa.firebaseapp.com",
-    projectId: "cineflix-4b1aa",
-    storageBucket: "cineflix-4b1aa.appspot.com",
-    databaseURL: "https://cineflix-4b1aa-default-rtdb.firebaseio.com/",
-    messagingSenderId: "542686761142",
-    appId: "1:542686761142:web:5cd7a5976705ae594a1617",
-    measurementId: "G-FM4XWCE8VE",
-};
+
+const firebaseConfig = JSON.parse(process.env.SECRET_FIREBASE_CONFIG);
 
 firebase.initializeApp(firebaseConfig);
 
