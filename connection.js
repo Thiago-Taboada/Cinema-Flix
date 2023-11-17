@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         if (user && favPage) {
-            listarVideosDeUsuario(uid);
+            listarVideos();
         }
     });
 });
@@ -302,61 +302,71 @@ function uploadVideo() {
 }
 
 
-
-function listarVideosDeUsuario(uid) {
-    var userVideosRef = storage.ref('videos/' + uid);
-    userVideosRef.listAll()
+function listarVideos() {
+    var videosRef = storage.ref('videos');
+    videosRef.listAll()
         .then(function (result) {
             const videoMain = document.getElementById('video-main');
 
-            result.items.forEach(function (video) {
-                video.getDownloadURL().then(function (downloadURL) {
-                    const { name } = video;
+            result.prefixes.forEach(function (userRef) {
+                var uid = userRef.name;
 
-                    const videoEl = document.createElement('div');
-                    videoEl.classList.add('video');
-                    videoEl.innerHTML = `
-                        <video src="${downloadURL}" class="video-element"></video>
-                        <div class="video-info">
-                            <h3>${name}</h3>
-                            <br/>
-                        </div>
+                userRef.listAll()
+                    .then(function (userResult) {
+                        userResult.items.forEach(function (video) {
+                            video.getDownloadURL().then(function (downloadURL) {
+                                const { name } = video;
 
-                        <div class="resumo" id="resumo-${name}">
-                            <h3>Resumo</h3>
-                            <p>Vídeo enviado pelo usuário.</p>
-                            <br/>
-                            <div class="resumo-btn">
-                              <button class="know-more" id="more-${name}">Mais Informações</button>
-                              <button class="delete" id="delete-${name}">Excluir</button>
-                            </div>
-                        </div>
-                    `;
+                                const videoEl = document.createElement('div');
+                                videoEl.classList.add('video');
+                                videoEl.innerHTML = `
+                                    <video src="${downloadURL}" class="video-element"></video>
+                                    <div class="video-info">
+                                        <h3>${name}</h3>
+                                        <br/>
+                                    </div>
 
-                    videoMain.appendChild(videoEl);
+                                    <div class="resumo" id="resumo-${name}">
+                                        <h3>Resumo</h3>
+                                        <p>Vídeo enviado pelo usuário.</p>
+                                        <br/>
+                                        <div class="resumo-btn">
+                                            <button class="know-more" id="more-${name}">Mais Informações</button>
+                                            <button class="delete" id="delete-${name}">Excluir</button>
+                                        </div>
+                                    </div>
+                                `;
 
-                    document.getElementById(`more-${name}`).addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        showVideoDetails(name, uid);
+                                videoMain.appendChild(videoEl);
+
+                                document.getElementById(`more-${name}`).addEventListener('click', (e) => {
+                                    e.stopPropagation();
+                                    showVideoDetails(name, uid);
+                                });
+
+                                document.getElementById(`delete-${name}`).addEventListener('click', (e) => {
+                                    e.stopPropagation();
+                                    deleteVideo(name, uid);
+                                });
+
+                                document.getElementById(`resumo-${name}`).addEventListener('click', () => {
+                                    console.log("resumo clicked " + name);
+                                });
+                            }).catch(function (error) {
+                                console.error('Error URL video: ', error);
+                            });
+                        });
+                    })
+                    .catch(function (error) {
+                        console.error('Error al obtener videos del usuario:', error);
                     });
-
-                    document.getElementById(`delete-${name}`).addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        deleteVideo(name, uid);
-                    });
-
-                    document.getElementById(`resumo-${name}`).addEventListener('click', () => {
-                        console.log("resumo clicked " + name);
-                    });
-                }).catch(function (error) {
-                    console.error('Error URL video: ', error);
-                });
             });
         })
         .catch(function (error) {
-            console.error('Error:', error);
+            console.error('Error al listar todos los videos:', error);
         });
 }
+
 
 function showVideoDetails(name, uid) {
     var userVideoRef = storage.ref('videos/' + uid + '/' + name);
