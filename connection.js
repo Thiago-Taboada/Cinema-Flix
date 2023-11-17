@@ -1,13 +1,19 @@
 // FIREBASE AND EXTRA VALIDATIONS
-document.addEventListener("DOMContentLoaded", function () {
-    firebase.auth().onAuthStateChanged(function (user) {
+document.addEventListener("DOMContentLoaded", async function () {
+    firebase.auth().onAuthStateChanged(async function (user) {
         const restrictedBodies = document.querySelectorAll(".restricted");
         const loginPage = window.location.href.endsWith("index.html");
         const favPage = window.location.href.endsWith("fav.html");
+        var exitBtn = document.getElementById("exit-btn");
+
+
 
         if (user) {
-            var fbuser = firebase.auth().currentUser;
-            var uid = fbuser.uid;
+            const fbuser = firebase.auth().currentUser;
+            const logged_uid = fbuser.uid;
+            const logged_user_name = await getUserName(logged_uid);
+            exitBtn.title = logged_user_name;
+
             restrictedBodies.forEach((body) => {
                 body.style.display = "block";
             });
@@ -22,10 +28,15 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         if (user && favPage) {
-            listarVideos();
+            const fbuser = firebase.auth().currentUser;
+            const logged_uid = fbuser.uid;
+            await listarVideos(logged_uid);
+            const logged_user_name = await getUserName(logged_uid);
+            exitBtn.title = logged_user_name;
         }
     });
 });
+
 
 
 //const firebaseConfig = JSON.parse(process.env.SECRET_FIREBASE_CONFIG);
@@ -137,7 +148,7 @@ function register() {
         .then(function (userCredential) {
             var user = userCredential.user;
 
-            return user.sendEmailVerification();
+            user.sendEmailVerification();
         })
         .then(function () {
             var user = auth.currentUser;
@@ -150,12 +161,14 @@ function register() {
                 user_name: user_name,
                 dt_nasc: dt_nasc,
                 last_login: Date.now(),
+                isAdmin: false,
             };
 
             database_ref.child("users/" + user.uid).set(user_data);
 
             alert("Usuário cadastrado! Verifique seu email para ativar sua conta.");
-            location.reload();
+            var elementToClick = document.getElementById('frm-to-login');
+            elementToClick.click();
         })
         .catch(function (error) {
             getErrorMessage(error);
@@ -235,6 +248,29 @@ function recover() {
     }
 }
 
+function getUserName(uid) {
+    return new Promise((resolve, reject) => {
+        var userRef = database.ref('users/' + uid);
+
+        userRef.once('value')
+            .then(function (snapshot) {
+                var userData = snapshot.val();
+                if (userData && userData.user_name) {
+                    var userName = userData.user_name;
+                    resolve(userName);
+                } else {
+                    console.error('Não foi encontrada nenhuma informação sobre o UID:', uid);
+                    reject('Usuário não encontrado');
+                }
+            })
+            .catch(function (error) {
+                console.error('Error:', error);
+                reject(error);
+            });
+    });
+}
+
+
 
 const openUpload = document.getElementById("open-upload");
 const uploaContainer = document.getElementById("upload-container");
@@ -300,16 +336,15 @@ function uploadVideo() {
         alert("Nenhum video foi selecionado.");
     }
 }
-
-
-function listarVideos() {
+function listarVideos(logged_uid) {
     var videosRef = storage.ref('videos');
     videosRef.listAll()
-        .then(function (result) {
+        .then(async function (result) {
             const videoMain = document.getElementById('video-main');
 
-            result.prefixes.forEach(function (userRef) {
+            for (const userRef of result.prefixes) {
                 var uid = userRef.name;
+                var user_name = await getUserName(uid);
 
                 userRef.listAll()
                     .then(function (userResult) {
@@ -329,10 +364,11 @@ function listarVideos() {
                                     <div class="resumo" id="resumo-${name}">
                                         <h3>Resumo</h3>
                                         <p>Vídeo enviado pelo usuário.</p>
+                                        <p>Enviado por: ${user_name}</p>
                                         <br/>
                                         <div class="resumo-btn">
                                             <button class="know-more" id="more-${name}">Mais Informações</button>
-                                            <button class="delete" id="delete-${name}">Excluir</button>
+                                            ${uid === logged_uid ? `<button class="delete" id="delete-${name}">Excluir</button>` : ''}
                                         </div>
                                     </div>
                                 `;
@@ -344,10 +380,12 @@ function listarVideos() {
                                     showVideoDetails(name, uid);
                                 });
 
-                                document.getElementById(`delete-${name}`).addEventListener('click', (e) => {
-                                    e.stopPropagation();
-                                    deleteVideo(name, uid);
-                                });
+                                if (uid === logged_uid) {
+                                    document.getElementById(`delete-${name}`).addEventListener('click', (e) => {
+                                        e.stopPropagation();
+                                        deleteVideo(name, uid);
+                                    });
+                                }
 
                                 document.getElementById(`resumo-${name}`).addEventListener('click', () => {
                                     console.log("resumo clicked " + name);
@@ -360,7 +398,7 @@ function listarVideos() {
                     .catch(function (error) {
                         console.error('Error al obtener videos del usuario:', error);
                     });
-            });
+            }
         })
         .catch(function (error) {
             console.error('Error al listar todos los videos:', error);

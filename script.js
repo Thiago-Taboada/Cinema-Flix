@@ -9,9 +9,9 @@ const IMG_URL = 'https://image.tmdb.org/t/p/original';
 const IMG500_URL = 'https://image.tmdb.org/t/p/w500';
 const searchURL = BASE_URL + '/search/multi?include_adult=false&' + API_KEY;
 
-const HOME_URL = BASE_URL + '/discover/movie?sort_by=revenue.desc&' + API_KEY;
+const HOME_URL = BASE_URL + '/discover/movie?sort_by=revenue.desc&vote_average.gte=6&' + API_KEY;
 const FILMES_URL = BASE_URL + '/discover/movie?sort_by=popularity.desc&' + API_KEY;
-const SERIES_URL = BASE_URL + '/discover/tv?sort_by=popularity.desc&' + API_KEY;
+const SERIES_URL = BASE_URL + '/discover/tv?sort_by=popularity.desc&vote_average.gte=6&' + API_KEY;
 
 let API_URL = HOME_URL;
 
@@ -34,7 +34,6 @@ navLinks.forEach(link => {
       }
       window.location.href = "home.html";
     }
-    console.log(urlAtual)
     if (id === 'nav-home') {
       API_URL = HOME_URL;
     } else if (id === 'nav-filmes') {

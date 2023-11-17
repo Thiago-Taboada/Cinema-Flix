@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;700&display=swap");
 
 :root {
     --main-color: #9146ff;
-    --body-bg: #0A0908;
+    --body-bg: #0a0908;
     --box-bg: #221f1f;
-    --text-color: #F2F4F3;
+    --text-color: #f2f4f3;
 
     --nav-height: 100px;
     --space-top: 30px;
@@ -91,7 +91,7 @@ img {
     padding: 0 20px;
 }
 
-.nav-menu li~li {
+.nav-menu li ~ li {
     margin-left: 30px;
 }
 
@@ -187,7 +187,6 @@ a.movie-item:hover {
     left: 6px;
 }
 
-
 /* -------------------------------------- */
 
 .search {
@@ -224,7 +223,6 @@ main {
     overflow: hidden;
 }
 
-
 .movie img {
     width: 100%;
 }
@@ -235,7 +233,6 @@ main {
     align-items: flex-start;
     justify-content: space-between;
     padding: 0.5rem 1rem 1rem;
-
 }
 
 .movie-info .rating {
@@ -278,7 +275,7 @@ main {
 }
 
 .movie:hover .resumo {
-    transform: translateY(0)
+    transform: translateY(0);
 }
 
 /* revisar abaixo _________ */
@@ -291,6 +288,11 @@ main {
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.8);
     overflow-y: auto;
+}
+
+.details-container::-webkit-scrollbar {
+    width: 0;
+    height: 0;
 }
 
 .details {
@@ -359,7 +361,7 @@ main {
 }
 
 .tag.highlight {
-    background: #361A61;
+    background: #361a61;
 }
 
 .no-results {
@@ -452,7 +454,7 @@ footer a.logo:hover {
     color: var(--text-color);
 }
 
-.social-item~.social-item {
+.social-item ~ .social-item {
     margin-left: 20px;
 }
 
@@ -479,7 +481,6 @@ footer .content {
     background-color: var(--box-bg);
     text-align: center;
 }
-
 
 /* RESPONSIVE */
 
@@ -641,13 +642,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     display: none;
 }
 
-.recover{
+.recover {
     display: none;
 }
 
 /* USER VIDEOS */
-
-
 
 .fav-header {
     margin-top: 50px;
@@ -755,7 +754,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     overflow: hidden;
 }
 
-
 .video video {
     height: 420px;
 }
@@ -791,7 +789,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .video:hover .resumo {
-    transform: translateY(0)
+    transform: translateY(0);
 }
 
 .delete {
@@ -804,7 +802,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     margin-top: 5px;
     cursor: pointer;
 }
-
 
 .video-details {
     position: absolute;

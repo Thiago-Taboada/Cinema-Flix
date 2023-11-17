@@ -1,60 +1,35 @@
 
-function onChangeName(){
-    
+function onChangeName() {
+
     const valid = toggleNameErrors();
     toggleButtonsDisable(valid);
 }
 
-function onChangeEmail(){
+function onChangeEmail() {
     const valid = toggleEmailErrors();
     toggleButtonsDisable(valid);
 }
 
-function onChangePassword(){
+function onChangePassword() {
     const valid = togglePasswordErrors();
     toggleButtonsDisable(valid);
 }
 
-function onChangeUserName(){
+function onChangeUserName() {
     const valid = toggleUsernameErrors();
     toggleButtonsDisable(valid);
 }
 
-function onChangeDate(){
+function onChangeDate() {
     const valid = toggleDateErrors();
     toggleButtonsDisable(valid);
 }
-
-//////////////
-
-// function login() {
-//     firebase.auth().signInWithEmailAndPassword(
-//         form.email().value, form.password().value
-//     ).then(response => {
-//         window.location.href = "pages/home/home.html";
-//     }).catch(error => {
-//         alert(getErrorMessage(error));
-//     });
-// }
-
-// function getErrorMessage(error) {
-//     if (error.code == "auth/user-not-found") {
-//         return "Usuário nao encontrado";
-//     }
-//     return error.message;
-// }
-
-// function register() {
-//     window.location.href = "pages/register/register.html";
-// }
 
 function toggleButtonsDisable(valid) {
     form.loginButton().disabled = !valid;
     form.registerButton().disabled = !valid;
 }
 
-
-////
 const form = {
     name: () => document.getElementById("nome"),
     nameRequiredError: () => document.getElementById("name-required-error"),
@@ -75,7 +50,7 @@ const form = {
     registerButton: () => document.getElementById("register-button"),
 };
 
-function toggleNameErrors(){
+function toggleNameErrors() {
     const name = form.name().value;
 
     if (!name) {
@@ -118,7 +93,7 @@ function togglePasswordErrors() {
     return validate_password(password);
 }
 
-function toggleUsernameErrors(){
+function toggleUsernameErrors() {
     const userName = form.userName().value;
 
     if (!userName) {
@@ -132,7 +107,7 @@ function toggleUsernameErrors(){
     return validate_username(userName);
 }
 
-function toggleDateErrors(){
+function toggleDateErrors() {
     const dtNasc = form.dtNasc().value;
     if (!dtNasc) {
         form.dtRequiredError().style.display = "block";
@@ -148,10 +123,8 @@ function toggleDateErrors(){
 function validate_email(email) {
     expression = /^[^@]+@\w+(\.\w+)+\w$/
     if (expression.test(email) == true) {
-        // Email is good
         return true
     } else {
-        // Email is not good
         return false
     }
 }
@@ -205,10 +178,9 @@ function validate_dt(dateOfBirth) {
         age--;
     }
 
-    if(age >= 18 && age <= 120){   
+    if (age >= 18 && age <= 120) {
         return true;
     }
-
     return false;
 }
 
@@ -220,7 +192,6 @@ function validate_name(name) {
     if (!/^[a-zA-Z\s]+$/.test(name)) {
         return false;
     }
-
     return true;
 }
 
@@ -236,6 +207,5 @@ function validate_username(user_name) {
     if (user_name.length < 6) {
         return false;
     }
-
     return true;
 }  
