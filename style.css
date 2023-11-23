@@ -492,14 +492,6 @@ footer .content {
     html {
         font-size: 14px;
     }
-
-    .hero-slide-item {
-        padding-top: 50%;
-    }
-
-    .item-content-wraper {
-        width: 50%;
-    }
 }
 
 @media only screen and (max-width: 850px) {
@@ -511,25 +503,26 @@ footer .content {
         padding: 0 15px;
     }
 
-    .hero-slide-item {
-        height: max-content;
-        padding-top: unset;
+    .details{
+        width: 90%;
+        display: flex;
     }
 
-    .item-content-wraper {
-        width: 100%;
+    .details .resumo {
         height: 100%;
-        padding-bottom: 20px;
-        padding-right: 5rem;
-        background-color: rgba(0, 0, 0, 0.2);
+        padding: 1rem;
+        overflow-y: auto;
     }
 
-    .hero-slide-item-content {
-        position: relative;
-    }
-
-    .hero-slide-item img {
-        height: 100%;
+    #close-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 32px;
+        cursor: pointer;
+        color: var(--text-color);
+        z-index: 99;
+        text-shadow: 2px 2px 4px #000;
     }
 
     .item-content-title {

@@ -74,10 +74,6 @@ if (activeLinkId) {
   }
 }
 
-
-
-
-
 const genres = [
   {
     "id": 28,
