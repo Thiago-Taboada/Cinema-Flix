@@ -110,6 +110,10 @@ a.movie-item:hover {
     color: unset;
 }
 
+.nav-active{
+    text-decoration: underline;
+}
+
 .btn {
     color: #ffffff;
     padding: 0.25rem 1.5rem;

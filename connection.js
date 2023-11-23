@@ -343,67 +343,68 @@ function listarVideos(logged_uid) {
             const videoMain = document.getElementById('video-main');
 
             for (const userRef of result.prefixes) {
-                var uid = userRef.name;
-                var user_name = await getUserName(uid);
+                const ownerUid = userRef.name;  // Utilizar 'const' para evitar cambios no deseados
+                const user_name = await getUserName(ownerUid);
 
-                userRef.listAll()
-                    .then(function (userResult) {
-                        userResult.items.forEach(function (video) {
-                            video.getDownloadURL().then(function (downloadURL) {
-                                const { name } = video;
+                try {
+                    const userResult = await userRef.listAll();
 
-                                const videoEl = document.createElement('div');
-                                videoEl.classList.add('video');
-                                videoEl.innerHTML = `
-                                    <video src="${downloadURL}" class="video-element"></video>
-                                    <div class="video-info">
-                                        <h3>${name}</h3>
-                                        <br/>
+                    userResult.items.forEach(function (video) {
+                        video.getDownloadURL().then(function (downloadURL) {
+                            const { name } = video;
+
+                            const videoEl = document.createElement('div');
+                            videoEl.classList.add('video');
+                            videoEl.innerHTML = `
+                                <video src="${downloadURL}" class="video-element"></video>
+                                <div class="video-info">
+                                    <h3>${name}</h3>
+                                    <br/>
+                                </div>
+
+                                <div class="resumo" id="resumo-${name}">
+                                    <h3>Resumo</h3>
+                                    <p>Enviado por: ${user_name}</p>
+                                    <br/>
+                                    <div class="resumo-btn">
+                                        <button class="know-more" id="more-${name}">Mais Informações</button>
+                                        ${ownerUid === logged_uid ? `<button class="delete" id="delete-${name}">Excluir</button>` : ''}
                                     </div>
+                                </div>
+                            `;
 
-                                    <div class="resumo" id="resumo-${name}">
-                                        <h3>Resumo</h3>
-                                        <p>Vídeo enviado pelo usuário.</p>
-                                        <p>Enviado por: ${user_name}</p>
-                                        <br/>
-                                        <div class="resumo-btn">
-                                            <button class="know-more" id="more-${name}">Mais Informações</button>
-                                            ${uid === logged_uid ? `<button class="delete" id="delete-${name}">Excluir</button>` : ''}
-                                        </div>
-                                    </div>
-                                `;
+                            videoMain.appendChild(videoEl);
 
-                                videoMain.appendChild(videoEl);
-
-                                document.getElementById(`more-${name}`).addEventListener('click', (e) => {
-                                    e.stopPropagation();
-                                    showVideoDetails(name, uid);
-                                });
-
-                                if (uid === logged_uid) {
-                                    document.getElementById(`delete-${name}`).addEventListener('click', (e) => {
-                                        e.stopPropagation();
-                                        deleteVideo(name, uid);
-                                    });
-                                }
-
-                                document.getElementById(`resumo-${name}`).addEventListener('click', () => {
-                                    console.log("resumo clicked " + name);
-                                });
-                            }).catch(function (error) {
-                                console.error('Error URL video: ', error);
+                            document.getElementById(`more-${name}`).addEventListener('click', (e) => {
+                                e.stopPropagation();
+                                showVideoDetails(name, ownerUid);
                             });
+
+                            if (ownerUid === logged_uid) {
+                                document.getElementById(`delete-${name}`).addEventListener('click', (e) => {
+                                    e.stopPropagation();
+                                    deleteVideo(name, ownerUid);
+                                });
+                            }
+
+                            document.getElementById(`resumo-${name}`).addEventListener('click', () => {
+                                console.log("resumo clicked " + name);
+                            });
+                        }).catch(function (error) {
+                            console.error('Error URL video: ', error);
                         });
-                    })
-                    .catch(function (error) {
-                        console.error('Error al obtener videos del usuario:', error);
                     });
+                } catch (error) {
+                    console.error('Erro ao obter videos do usuario:', error);
+                }
             }
         })
         .catch(function (error) {
-            console.error('Error al listar todos los videos:', error);
+            console.error('Erro o listar todos los videos:', error);
         });
 }
+
+
 
 
 function showVideoDetails(name, uid) {

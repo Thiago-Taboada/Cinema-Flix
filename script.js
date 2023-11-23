@@ -17,10 +17,26 @@ let API_URL = HOME_URL;
 
 
 const navLinks = document.querySelectorAll('.nav-menu .nav');
+let activeLinkId = localStorage.getItem('activeLinkId');
+
+function setActiveLink(link) {
+  if (activeLinkId) {
+    const prevActiveLink = document.getElementById(activeLinkId);
+    if (prevActiveLink) {
+      prevActiveLink.classList.remove('nav-active');
+    }
+  }
+
+  link.classList.add('nav-active');
+  activeLinkId = link.id;
+  localStorage.setItem('activeLinkId', activeLinkId);
+}
+
 navLinks.forEach(link => {
   link.addEventListener('click', (e) => {
     e.preventDefault();
     const id = e.target.id;
+
     var urlAtual = window.location.href;
     if (urlAtual.endsWith("fav.html")) {
       if (id === 'nav-home') {
@@ -46,8 +62,20 @@ navLinks.forEach(link => {
     selectedGenre = [];
     highlightSelection();
     getMovies(API_URL);
+
+    setActiveLink(e.target);
   });
 });
+
+if (activeLinkId) {
+  const activeLink = document.getElementById(activeLinkId);
+  if (activeLink) {
+    setActiveLink(activeLink);
+  }
+}
+
+
+
 
 
 const genres = [
